@@ -1,0 +1,20 @@
+
+///100 days  of RTL///
+
+///Abilash P///
+
+///odd-parity checker///
+
+///3bits input and one bit output///
+
+module odd_parity_checker (A, B, C, P, Y);
+
+input  A, B, C, P;
+output Y;
+
+wire P1;
+
+xor x1 (P1, A, B, C, P);
+not n1 (Y, P1);
+
+endmodule
