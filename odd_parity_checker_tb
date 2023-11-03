@@ -1,0 +1,61 @@
+///100 days  of RTL///
+
+///Abilash P///
+
+///odd-parity checker///
+
+///3bits input and one bit output///
+
+module odd_parity_checker_tb ();
+
+reg  A, B, C, P;
+wire Y;
+
+odd_parity_checker DUT(.A(A), .B(B), .C(C), .P(P), .Y(Y));
+
+integer i;
+integer j;
+integer ones; 
+integer count;
+
+initial
+begin
+$display ("Odd sequence received --- Output 0");
+$display ("Even sequence received --- Output 1");
+
+$display ("-------------------------------------------------------------");
+end
+
+initial
+begin
+  for (i=0; i<16; i=i+1)
+  begin
+     {A, B, C, P} = i;
+     $display("The input is %b", {A,B,C,P});
+     #20;
+
+     ones  = i;
+     count = 0;
+
+     for (j=0; j<4; j=j+1)
+     begin
+        if(ones[j]==1)
+        begin
+          count = count + 1;
+        end
+     end
+
+     if(count%2!=0)
+       begin
+        $display ("The Received Sequence contains Odd number of ones");
+        $display ("The Output Y = %b" ,Y);
+       end
+     else
+       begin
+        $display ("The Received Sequence contains Even number of ones");
+        $display ("The Output Y = %b" ,Y);
+       end
+  end
+end
+
+endmodule
